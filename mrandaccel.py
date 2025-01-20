@@ -9,11 +9,6 @@ track = mido.MidiTrack()
 mid.tracks.append(track)
 bpm = 87
 tempo = mido.bpm2tempo(bpm)
-# tempo_message = mido.MetaMessage('set_tempo', tempo=mido.bpm2tempo(87))
-# print(bytes(tempo_message))
-# bytes_data = bytes([0xFF, 0x51, 0x03, 0x0A, 0x84, 0x87])
-# tempo_message =  mido.MetaMessage.from_bytes(bytes_data)
-# track.append(tempo_message)
 timings = []
 
 def time_per_note(note, bpm):
