@@ -8,7 +8,7 @@ mid = mido.MidiFile()
 track = mido.MidiTrack()
 mid.tracks.append(track)
 bpm = 87
-tempo = mido.bpm2tempo(bpm)
+tempo = mido.bpm2tempo(bpm) 
 timings = []
 
 def time_per_note(note, bpm):
@@ -16,7 +16,7 @@ def time_per_note(note, bpm):
     print(res)
     return res
 
-def add_to_track(valid, time):
+def add_to_track(valid, time, range):
     percent = random.randint(0,100)
     if percent < valid:
         silent_note = silence(time)
@@ -25,7 +25,7 @@ def add_to_track(valid, time):
         track.append(silent_note[1])
         timings.append(time_per_note(time, bpm))
     else:
-        note = add_note(time)
+        note = add_note(time, range)
         track.append(note[0])
         timings.append(time_per_note(time, bpm))
         track.append(note[1])
@@ -61,25 +61,28 @@ def output(track, timings):
 
 # Two first measures
 
-for x in range(16):
+for x in range(8):
     if x<8:
-        add_to_track(80, 4)
+        add_to_track(80, 4, 0)
     if 7<x<16:
-        add_to_track(60, 4)
+        add_to_track(60, 4, 0)
 
 # Third measure
 
 for x in range(16):
-    add_to_track(40, 8)
+    add_to_track(40, 8, 1)
 
 # Last measure - First half
 
-for x in range(16):
-    add_to_track(20, 16)
+for x in range(32):
+    add_to_track(30, 16, 1)
 
 # Last measure - Second half
 
 for x in range(32):
-    add_to_track(20, 32)
+    add_to_track(20, 32, 2)
 
-output(track, timings);
+for x in range(64):
+    add_to_track(10, 64, 2)
+
+output(track, timings)
