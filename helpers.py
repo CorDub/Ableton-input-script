@@ -17,6 +17,10 @@ def note(range):
         res = potential_notes[random.randint(0,6)] + octave[random.randint(0,2)]
     return res
     
+def pan():
+   pan_value = random.randint(0, 127)
+   pan_message = mido.Message('control_change', control=10, value=pan_value, time=0)
+   return pan_message
 
 def silence(time):
     res = [] 
