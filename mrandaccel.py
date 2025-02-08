@@ -1,7 +1,7 @@
 import random
 import mido
 import time
-from helpers import silence, add_note
+from helpers import silence, add_note, pan
 
 output_port_name = "ToAbleton 1"
 mid = mido.MidiFile()
@@ -17,6 +17,7 @@ def time_per_note(note, bpm):
     return res
 
 def add_to_track(valid, time, range):
+    track.append(pan())
     percent = random.randint(0,100)
     if percent < valid:
         silent_note = silence(time)
